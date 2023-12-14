@@ -1,0 +1,69 @@
+class FileHandler():
+    def __init__(self, file_name):
+        with open(file_name, "r", encoding="utf-8") as file:
+            file_content = file.read()
+            words = file_content.split()
+            self.pure_words = []
+
+            for word in words:
+                word = word.strip()
+                word = word.strip(".")
+                word = word.strip("\n")
+                self.pure_words.append(word)
+
+    def find_word(self, search_word):
+        positions = []
+        count = 1
+        for word in self.pure_words:
+            if word == search_word:
+                positions.append(count)
+            count += 1
+
+        if len(positions) == 0:
+            print("The word doesn't exist in the file...")
+        else:
+            print(f"The word '{search_word}' appears in the file at these positions:\n{positions}")
+
+    def word_histogram(self):
+        word_frequency = {}
+        word_set = set()
+
+        for word in self.pure_words:
+            word_set.add(word)
+            if word in word_frequency:
+                word_frequency[word] += 1
+            else:
+                word_frequency[word] = 1
+
+        print("Word Frequencies\n")
+        for word, freq in word_frequency.items():
+            print("The word '{word}' appears {freq} times in the text.")
+
+        print("\nAll Words\n")
+        for word in word_set:
+            print(word)
+            print("****")
+
+
+file_handler = FileHandler("file.txt")
+print("""****
+
+File Operations 
+1. Get word frequency for all words
+2. Search for a word
+Press 'q' to exit.
+
+""")
+while True:
+    operation = input("Operation: ")
+
+    if operation == "q":
+        print("Exiting the program....")
+        break
+    elif operation == "1":
+        file_handler.word_histogram()
+    elif operation == "2":
+        word_to_search = input("Which word are you looking for? ")
+        file_handler.find_word(word_to_search)
+    else:
+        print("Invalid operation...")
