@@ -1,0 +1,80 @@
+Problem 1
+Let's say you have a list of number pairs representing the sides of a rectangle.
+
+         [(3,4),(10,3),(5,6),(1,9)]
+
+Now write a function that calculates the representation of rectangles according to the side lengths and print a list of these functions for each element of this listening as follows.
+
+         [12, 30, 30, 9]
+
+Solution1 :
+def alan_hesapla(demet):
+    return demet[0] * demet[1]
+
+
+liste = [(3,4),(10,3),(5,6),(1,9)]
+
+print(list(map(alan_hesapla,liste)))
+--------------
+
+Problem 2
+Let's say you have a list where each element is a tuple of 3.
+
+     [(3,4,5),(6,8,10),(3,10,7)]
+
+Now write a function that returns whether these pieces are triangles based on their side lengths and print the list containing only triangle-shaped items.
+
+     [(3, 4, 5), (6, 8, 10)]
+
+
+Solution 2:
+def üçgen_mi(demet):
+    
+    if (abs(demet[0]+demet[1]) > demet[2] and abs(demet[0]+demet[2]) > demet[1] and abs(demet[1]+demet[2]) > demet[0]):
+        return True
+    else:
+        return False
+
+
+liste = [(3,4,5),(6,8,10),(3,10,7)]
+
+print(list(filter(üçgen_mi,liste)))
+---------------
+
+Problem 3
+Have a list like this.
+
+    [1,2,3,4,5,6,7,8,9,10]
+
+Write a function that prints the sum of the healthy even parts of this listening to the screen.
+
+Solution 3:
+
+from functools import reduce
+liste = [1,2,3,4,5,6,7,8,9,10]
+
+filtre = list(filter(lambda x : x % 2 == 0,liste))
+
+print(reduce(lambda x,y : x + y,filtre))
+---------------
+
+Problem 4
+Have two lists of names and surnames.
+
+        names -----> ["Kerim","Tarık","Ezgi","Kemal","İlkay","Şükran","Merve"]
+
+        surnames -----> ["Yılmaz","Öztürk","Dağdeviren","Atatürk","Dikmen","Kaya","Polat"]
+
+Match these names and surnames in order and print the names and surnames at the bottom of the screen.
+
+Solution 4:
+isimler = ["Kerim","Tarık","Ezgi","Kemal","İlkay","Şükran","Merve"]
+
+soyisimler = ["Yılmaz","Öztürk","Dağdeviren","Atatürk","Dikmen","Kaya","Polat"]
+
+for i,j in zip(isimler,soyisimler):
+    print(i,j)
+
+
+
+
