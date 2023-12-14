@@ -1,0 +1,32 @@
+def extra(func):
+    
+    def extra_feature():
+        print("Perfect Numbers...")
+        for number in range(1, 1001):
+            total = 0
+            i = 1
+            while i <= number // 2:  # Optimize the loop by checking divisors only up to half of the number
+                if number % i == 0:
+                    total += i
+                i += 1
+            if total == number and number != 1:  # Exclude number 1 from being considered as a perfect number
+                print(number)
+        func()
+                
+    return extra_feature
+
+
+@extra
+def prime_numbers():
+    print("Prime Numbers...")
+    for number in range(2, 1001):
+        i = 2 
+        count = 0
+        while i <= number // 2:  # Optimize the loop to check divisors only up to half of the number
+            if number % i == 0:
+                count += 1
+            i += 1
+        if count == 0:
+            print(number)
+            
+prime_numbers()
