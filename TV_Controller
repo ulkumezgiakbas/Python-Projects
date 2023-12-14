@@ -1,0 +1,131 @@
+import random
+import time
+
+class Controller():
+
+
+    def __init__(self,tv_d = "off",tv_s = 0,channel_list = ["Trt"],kanal = "Trt"):
+
+        self.tv_d = tv_d
+
+        self.tv_s = tv_s
+
+        self.channel_list = channel_list
+
+        self.channel = channel
+
+    def tv_on(self):
+
+        if (self.tv_d == "on"):
+            print("tv already on")
+        else:
+            print("tv on")
+            self.tv_d  = "on"
+
+    def tv_off(self):
+
+        if (self.tv_d == "off"):
+            print("tv already off")
+        else:
+            print("tv off")
+            self.tv_d = "off"
+
+    def voice(self):
+
+        while True:
+            feedb =  input("Voice down: '<'\nVoice up: '>'\nExit: exit")
+
+            if (feedb == "<"):
+                if (self.tv_s != 0):
+
+                    self.tv_s -= 1
+                    print("Voice:",self.tv_s)
+            elif (feedb == ">"):
+                if (self.tv_s != 31):
+
+                    self.tv_s += 1
+
+                    print("Voice:",self.tv_s)
+            else:
+                print("Voice updated:",self.tv_s)
+                break
+    def add_ch(self,ch_name):
+
+        print("adding")
+        time.sleep(1)
+
+        self.channel_list.append(ch_name)
+
+        print("added")
+    def random_ch(self):
+
+        randomm = random.randint(0,len(self.channel_list)-1)
+
+
+        self.channel = self.channel_list[randomm]
+
+        print("channel:" ,self.channel)
+    def __len__(self):
+
+        return len(self.channel_list)
+
+    def __str__(self):
+
+        return "Tv: {}\nTv voice: {}\nChannel List: {}\nChannel: {}\n".format(self.tv_d,self.tv_s,self.channel_list,self.channel)
+
+
+controller = Controller()
+
+
+print("""
+
+tv
+1. on
+2. off
+3. voice settings
+4. adding channel
+5. number of channel 
+6. random channel
+7. tv info
+
+press "q" to exit
+""")
+
+
+while True:
+
+    selectt = input("Select the command:")
+
+    if (selectt == "q"):
+        print("Program ending")
+        break
+
+    elif (selectt == "1"):
+        controller.tv_on()
+    elif (selectt == "2"):
+        controller.tv_off()
+
+    elif (selectt == "3"):
+        controller.voice()
+
+    elif (selectt == "4"):
+        channel_list = input("put "," between channel names")
+
+        channel_list = ch_name.split(",")
+
+        for adding in channel_list:
+            controller.add_ch(adding)
+    elif (selectt == "5"):
+
+        print("number of channel list:",len(controller))
+
+    elif (selectt == "6"):
+        controller.random_ch()
+
+    elif (selectt == "7"):
+        print(controller)
+
+    else:
+        print("error")
+
+
