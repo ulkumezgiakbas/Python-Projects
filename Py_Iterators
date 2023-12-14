@@ -1,0 +1,46 @@
+Program 1:
+
+
+class Squares():
+    
+    def __init__(self, maximum):
+        self.maximum = maximum
+        self.number = 1
+        
+    def __iter__(self):
+        return self
+    
+    def __next__(self):
+        if self.number <= self.maximum:
+            result = self.number ** 2
+            self.number += 1
+            return result
+        else:
+            self.number = 1
+            raise StopIteration
+
+
+
+
+Program 2:
+
+def is_prime(number):
+    if number < 2:
+        return False
+    for i in range(2, int(number ** 0.5) + 1):
+        if number % i == 0:
+            return False
+    return True
+
+def prime_generator():
+    i = 2
+    while True:
+        if is_prime(i):
+            yield i
+        i += 1
+
+prime_gen = prime_generator()
+for number in prime_gen:
+    if number > 1000:
+        break
+    print(number)
