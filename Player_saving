@@ -1,0 +1,15 @@
+print("player")
+
+name  = input("Player Name:")
+surname =input("Player Surname:")
+team = input("Player Team:")
+
+info = [name,surname,team]
+
+print("processing...")
+
+print("Player name: {}\nPlayer surname: {}\nPlayer team: {}\n".format(info[0],info[1],info[2]))
+
+
+print("saved...")
+
